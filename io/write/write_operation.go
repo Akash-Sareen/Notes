@@ -44,7 +44,6 @@ func WriteToFile(filename string) {
 	reader := bufio.NewReader(os.Stdin)
 
 	// Write input to file in chunks
-	// bufferSize := 4096 // Set buffer size to 4KB
 	buffer := make([]byte, bufferSize)
 	for {
 		bytesRead, err := reader.Read(buffer)

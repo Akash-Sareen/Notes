@@ -4,7 +4,7 @@ import (
 	"os"
 	"io/ioutil"
 	"strings"
-	"path/filepath"
+	// "path/filepath"
 )
 
 func ListFilesWithSubstring(dirPath, substr string) ([]os.FileInfo, error) {
@@ -22,20 +22,21 @@ func ListFilesWithSubstring(dirPath, substr string) ([]os.FileInfo, error) {
 		}
 	}
 
+	// Assuming in future the code can used to save notes according to category directory.
 	// recursively search subdirectories for files that contain the substring
-	subdirs, err := ioutil.ReadDir(dirPath)
-	if err != nil {
-		return nil, err
-	}
-	for _, subdir := range subdirs {
-		if subdir.IsDir() {
-			sublist, err := ListFilesWithSubstring(filepath.Join(dirPath, subdir.Name()), substr)
-			if err != nil {
-				return nil, err
-			}
-			filteredList = append(filteredList, sublist...)
-		}
-	}
+	// subdirs, err := ioutil.ReadDir(dirPath)
+	// if err != nil {
+	// 	return nil, err
+	// }
+	// for _, subdir := range subdirs {
+	// 	if subdir.IsDir() {
+	// 		sublist, err := ListFilesWithSubstring(filepath.Join(dirPath, subdir.Name()), substr)
+	// 		if err != nil {
+	// 			return nil, err
+	// 		}
+	// 		filteredList = append(filteredList, sublist...)
+	// 	}
+	// }
 
 	return filteredList, nil
 }

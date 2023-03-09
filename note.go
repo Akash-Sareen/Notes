@@ -29,11 +29,12 @@ func main() {
 
 	action := os.Args[1]
 	filename := os.Args[2]
-
-	var path string
+	path := "."
 	var basepath string
-    fmt.Print("Enter the real path to the directory: ")
-    fmt.Scanln(&path)
+
+	if(len(os.Args) == 4) {
+		path = os.Args[3]
+	}
 
     hasAccess, err := checkDirectoryAccess(path)
     if err != nil {
@@ -72,7 +73,7 @@ func main() {
 			// generate UUID for the file name
 			uuidStr := uuid.New().String()
 			result := uuidStr[:4]
-			fmt.Println("File Name: " + filename + "_" +result)
+			// fmt.Println("File Name: " + filename + "_" +result)
 			fmt.Println("To save the content to the file and exit the program, press ( ctrl + d ) after typing out the content")
 			path = path + "_" +result
 
@@ -104,6 +105,8 @@ func main() {
 			}
 			if(!isFileDeleted) {
 				fmt.Printf("No File Found to be Deleted")
+			} else {
+				fmt.Printf("Deleted the file %v", filename)
 			}
 		default:
 			fmt.Println("Invalid action. Usage: ./program [read|write|delete] [filename]")
